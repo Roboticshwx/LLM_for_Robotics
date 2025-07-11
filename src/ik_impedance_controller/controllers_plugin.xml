@@ -1,0 +1,9 @@
+<library path="ik_impedance_controller">
+    <class name="ik_impedance_controller/IkImpedanceController"
+        type="ik_impedance_controller::IkImpedanceController"
+        base_class_type="controller_interface::ControllerInterface">
+        <description>
+            Move the robot to the target position.
+        </description>
+    </class>
+</library>
