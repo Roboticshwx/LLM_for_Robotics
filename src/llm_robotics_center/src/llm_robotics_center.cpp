@@ -30,6 +30,7 @@ enum class ActionType {
   GRASP_OBJECT,              // 夹爪动作
   DEVICE_0,                  // 处理移液枪
   DEVICE_1,                  // 处理旋涂仪
+  // CARTESIAN_MOVE,           // 笛卡尔空间移动
   UNKNOWN_OPERATION          // 未知动作
 };
 

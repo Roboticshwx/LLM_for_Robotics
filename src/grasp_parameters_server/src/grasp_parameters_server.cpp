@@ -9,11 +9,11 @@ void handle_grasp_request(
 const std::shared_ptr<communication_interfaces::srv::Grasp::Request> request,
 std::shared_ptr<communication_interfaces::srv::Grasp::Response> response)
 {
-	// pre-define map for the target point
+	// pre-define map for the gripper parameters
 	static const std::unordered_map<std::string, std::array<double, 2>> vector_map {
 		{"grasp_1", {0.01, 0.01}},
 		{"grasp_2", {0.04, 0.01}},
-    	{"grasp_3", {0.03, 0.04}},
+    {"grasp_3", {0.03, 0.04}},
 	};
 
 	const std::string& input_key = request->grasp_key;

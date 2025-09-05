@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(communication_interfaces)
+project(cartesian_parameters_server)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -7,10 +7,26 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(communication_interfaces REQUIRED)
+
+add_executable(cartesian_server src/cartesian_parameters_server.cpp)
+ament_target_dependencies(cartesian_server
+  rclcpp
+  communication_interfaces
+)
+
+add_executable(cartesian_client src/client_test.cpp)
+ament_target_dependencies(cartesian_client
+  rclcpp
+  communication_interfaces
+)
+
+install(TARGETS
+  cartesian_client
+  cartesian_server
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -23,15 +39,5 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
-rosidl_generate_interfaces(${PROJECT_NAME}
-  "srv/Cartesian.srv"
-  "srv/TargetPoint.srv"
-  "srv/Grasp.srv"
-  "msg/OperX.msg"
-  "msg/TargX.msg"
-  "msg/Sequence.msg"
-  "action/Target.action"
-)
 
 ament_package()
