@@ -41,9 +41,23 @@ ament_target_dependencies(action_client
   "rclcpp_components")
 rclcpp_components_register_node(action_client PLUGIN "move_target_action::MoveTargetActionClient" EXECUTABLE robot_action_client)
 
+
+# cartesian controller test
+add_library(cartesian_client SHARED src/cartesian_client_test.cpp)
+target_include_directories(cartesian_client PRIVATE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(cartesian_client
+  "communication_interfaces"
+  "rclcpp"
+  "rclcpp_action"
+  "rclcpp_components")
+rclcpp_components_register_node(cartesian_client PLUGIN "cartesian_move_action::CartesianActionClient" EXECUTABLE cartesian_client_test)
+
+
 # franka gripper test
 add_library(franka_gripper_test SHARED
-  src/gripper_client.cpp)
+  src/gripper_client_test.cpp)
 target_include_directories(franka_gripper_test PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
@@ -56,6 +70,7 @@ ament_target_dependencies(franka_gripper_test
 rclcpp_components_register_node(franka_gripper_test PLUGIN "franka_gripper_client::GripperActionClient" EXECUTABLE franka_gripper)
 
 install(TARGETS
+  cartesian_client
   franka_gripper_test
   llm_robotics_center
   action_client

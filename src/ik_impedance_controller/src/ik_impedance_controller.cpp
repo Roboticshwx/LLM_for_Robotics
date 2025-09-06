@@ -342,8 +342,7 @@ CallbackReturn IkImpedanceController::on_activate(
     // 绑定action server的回调函数
     std::bind(&IkImpedanceController::handle_goal, this, _1, _2),
     std::bind(&IkImpedanceController::handle_cancel, this, _1),
-    std::bind(&IkImpedanceController::handle_accepted, this, _1)
-  );
+    std::bind(&IkImpedanceController::handle_accepted, this, _1));
 
   RCLCPP_INFO(this->get_node()->get_logger(), "Action server 'ik_controller' initialized!!!");
   } catch (const std::exception& e) {

@@ -17,6 +17,9 @@ find_package(franka_semantic_components REQUIRED)
 find_package(moveit_core REQUIRED)
 find_package(moveit_msgs REQUIRED)
 find_package(Eigen3 REQUIRED)
+find_package(communication_interfaces REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(rclcpp_components REQUIRED)
 
 # 构建共享库
 add_library(
@@ -50,6 +53,9 @@ ament_target_dependencies(
   franka_semantic_components
   moveit_core
   moveit_msgs
+  communication_interfaces
+  rclcpp_action
+  rclcpp_components
 )
 
 # 安装规则

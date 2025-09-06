@@ -1,4 +1,4 @@
-float64[7] target_point
+float64[4] cartesian_move
 ---
 bool success
 string status
