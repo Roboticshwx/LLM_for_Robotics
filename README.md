@@ -76,6 +76,6 @@ ros2 launch cartesian_pose_controller start.py
 ```bash
 ros2 action send_goal /cartesian_pose_controller communication_interfaces/action/Cartesian "{cartesian_move: [0.05, 0.00, 0.00, 3]}"
 ```
-`[x, y, z, time]`前三个参数代表三个轴的位移（cm），后面一个为时间（s），一般设置3-5s
+`[x, y, z, time]`前三个参数代表三个轴的位移（m），后面一个为时间（s），一般设置2-3s
 
 
