@@ -334,8 +334,7 @@ CallbackReturn IkImpedanceController::on_activate(
 
   // 初始化action server
   using namespace std::placeholders;
-  
-  try {
+
   action_server_ = rclcpp_action::create_server<Target>(
     this->get_node(),  // 节点指针
     "ik_controller",  // action server名称
@@ -345,10 +344,6 @@ CallbackReturn IkImpedanceController::on_activate(
     std::bind(&IkImpedanceController::handle_accepted, this, _1));
 
   RCLCPP_INFO(this->get_node()->get_logger(), "Action server 'ik_controller' initialized!!!");
-  } catch (const std::exception& e) {
-    RCLCPP_ERROR(this->get_node()->get_logger(), "Failed to create action server: %s", e.what());
-    return CallbackReturn::ERROR;
-  }
 
   return CallbackReturn::SUCCESS;
 }
